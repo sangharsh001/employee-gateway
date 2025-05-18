@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: employee-gateway
@@ -8,7 +11,6 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-
       routes:
         - id: employee-service
           uri: lb://employee-service
@@ -22,6 +24,15 @@ spring:
 eureka:
   client:
     service-url:
-      default-zone: https://employee-registry-3yo1.onrender.com/eureka/
-    initial-instance-info-replication-interval-seconds: 10
-    registry-fetch-interval-seconds: 10
+      defaultZone: https://employee-registry-3yo1.onrender.com/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG
