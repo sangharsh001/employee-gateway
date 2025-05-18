@@ -1,20 +1,12 @@
 spring:
   application:
     name: employee-gateway
-
-eureka:
-  client:
-    service-url:
-      defaultZone: https://employee-registry-3yo1.onrender.com/eureka/
-
-spring:
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
-
       routes:
         - id: employee-service
           uri: lb://employee-service
@@ -24,7 +16,8 @@ spring:
           uri: lb://salary-service
           predicates:
             - Path=/salary/**
+
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_DEFAULT_ZONE}
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8761/eureka}
