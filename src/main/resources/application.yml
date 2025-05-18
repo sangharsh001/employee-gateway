@@ -2,16 +2,6 @@ spring:
   application:
     name: employee-gateway
 
-eureka:
-  client:
-    # Use kebab-case so Spring Boot binding is crystal-clear
-    service-url:
-      default-zone: https://employee-registry-3yo1.onrender.com/eureka/
-    # Optional retries to handle startup-order race:
-    initial-instance-info-replication-interval-seconds: 10
-    registry-fetch-interval-seconds: 10
-
-spring:
   cloud:
     gateway:
       discovery:
@@ -28,3 +18,10 @@ spring:
           uri: lb://salary-service
           predicates:
             - Path=/salary/**
+
+eureka:
+  client:
+    service-url:
+      default-zone: https://employee-registry-3yo1.onrender.com/eureka/
+    initial-instance-info-replication-interval-seconds: 10
+    registry-fetch-interval-seconds: 10
