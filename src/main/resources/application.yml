@@ -9,15 +9,14 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
-          lower-case-service-id: true
+          enabled: false  # Disable Eureka-based routing
       routes:
         - id: employee-service
-          uri: lb://employee-service
+          uri: https://employee-service-cjdn.onrender.com
           predicates:
             - Path=/employee/**
         - id: salary-service
-          uri: lb://salary-service
+          uri: https://salary-service-xxxxx.onrender.com   # Replace with actual salary service URL
           predicates:
             - Path=/salary/**
 
@@ -25,14 +24,11 @@ eureka:
   client:
     service-url:
       defaultZone: https://employee-registry-3yo1.onrender.com/eureka/
-    register-with-eureka: true
-    fetch-registry: true
+    register-with-eureka: false  # Optional: not needed for gateway now
+    fetch-registry: false
   instance:
     prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 10
-    lease-expiration-duration-in-seconds: 30
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
-    org.springframework.cloud.netflix.eureka: DEBUG
