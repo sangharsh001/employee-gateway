@@ -16,14 +16,14 @@ spring:
           predicates:
             - Path=/employee/**
         - id: salary-service
-          uri: https://salary-service-xxxxx.onrender.com   # Replace with actual salary service URL
+          uri: https://salaryservice-8r78.onrender.com   # Replace with actual salary service URL
           predicates:
             - Path=/salary/**
 
 eureka:
   client:
     service-url:
-      defaultZone: https://employee-registry-3yo1.onrender.com/eureka/
+      defaultZone: https://employee-registry-3yo1.onrender.com//eureka/
     register-with-eureka: false  # Optional: not needed for gateway now
     fetch-registry: false
   instance:
